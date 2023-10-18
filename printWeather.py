@@ -58,16 +58,15 @@ class Weather:
     # _makeRequest sends HTTP requests and retursn json object
     def _makeRequest(self, request_type, headers):
         self.weather = requests.get(request_type, headers=headers)
-        if self.weather.status_code != 200:
-            print("CANNOT REACH SERVER")
+        while self.weather.status_code != 200:
+            print("TRYING TO REACH SERVER...")
+            self.weather = requests.get(request_type, headers=headers)
         return self.weather
 
     # _printWeather prints weather message
     def _printWeather(self, rType):
 
-        printType = rType
-        
-        if printType == 'd':
+        if rType == 'd':
             print()
             for i in self.dailyObjects:
                 if i.isDaytime == True:
@@ -77,7 +76,7 @@ class Weather:
                     message = f"{'':16}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
                     print(message)
             print()
-        if printType == 'h':
+        if rType == 'h':
             today = datetime.date.today()
             print()
             for i in self.hourlyObjects:
