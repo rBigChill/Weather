@@ -1,3 +1,5 @@
+#! python3.11
+
 import subprocess
 import sys
 import json
@@ -9,9 +11,14 @@ try:
     from twilio.rest import Client
 except:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "twilio"])
 finally:
     import requests
+
+try:
+    from twilio.rest import Client
+except:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "twilio"])
+finally:
     from twilio.rest import Client
 
 # daily response object
