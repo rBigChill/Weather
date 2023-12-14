@@ -59,6 +59,7 @@ class Weather:
     def _makeRequest(self, request_type, headers):
         self.weather = requests.get(request_type, headers=headers)
         while self.weather.status_code != 200:
+            print("TRYING TO REACH SERVER...")
             self.weather = requests.get(request_type, headers=headers)
         return self.weather
 
@@ -66,15 +67,13 @@ class Weather:
     def _printWeather(self, rType):
 
         if rType == 'd':
-            print()
             for i in self.dailyObjects:
                 if i.isDaytime == True:
-                    message = f"{i.name:16}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
+                    message = f"{i.name}\n\t{i.temperature}{i.temperatureUnit}: {i.shortForecast}"
                     print(message)
                 else:
-                    message = f"{'':16}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
+                    message = f"\t{i.temperature}{i.temperatureUnit}: {i.shortForecast}"
                     print(message)
-            print()
         if rType == 'h':
             today = datetime.date.today()
             print()
@@ -82,7 +81,6 @@ class Weather:
                 if str(today) in i.startTime:
                     message = f"{i.startTime[11:16]}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
                     print(message)
-            print()
 
     # DailyRequest request daily weather
     def DailyRequest(self):

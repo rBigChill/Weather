@@ -1,4 +1,4 @@
-python .\printWeather.py > weather.txt
+python .\emailWeather.py > weather.txt
 
 function Send-Email {
     param(
@@ -14,5 +14,5 @@ function Send-Email {
     $mail.Send()
 }
 
-$message = Get-Content -Path weather.txt -Encoding UTF8 -Raw
+$message = Get-Content -Path weather.txt -Encoding Unicode -Raw
 Send-Email -Subject "Weather" -Body $message
