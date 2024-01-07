@@ -59,7 +59,6 @@ class Weather:
     def _makeRequest(self, request_type, headers):
         self.weather = requests.get(request_type, headers=headers)
         while self.weather.status_code != 200:
-            print("TRYING TO REACH SERVER...")
             self.weather = requests.get(request_type, headers=headers)
         return self.weather
 

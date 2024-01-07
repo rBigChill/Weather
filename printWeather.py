@@ -60,6 +60,7 @@ class Weather:
         self.weather = requests.get(request_type, headers=headers)
         while self.weather.status_code != 200:
             self.weather = requests.get(request_type, headers=headers)
+            print(self.weather.status_code)
         return self.weather
 
     # _printWeather prints weather message
@@ -76,12 +77,13 @@ class Weather:
                     print(message)
             print()
         if rType == 'h':
-            today = datetime.date.today()
+            count = 0
             print()
             for i in self.hourlyObjects:
-                if str(today) in i.startTime:
+                if count < 24:
                     message = f"{i.startTime[11:16]}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
                     print(message)
+                    count += 1
             print()
 
     # DailyRequest request daily weather
