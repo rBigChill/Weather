@@ -70,18 +70,18 @@ class Weather:
             print()
             for i in self.dailyObjects:
                 if i.isDaytime == True:
-                    message = f"{i.name:16}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
+                    message = f"{i.name}\n{i.temperature:4}{i.temperatureUnit:2}: {i.shortForecast}"
                     print(message)
                 else:
-                    message = f"{'':16}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
+                    message = f"{''}{i.temperature:4}{i.temperatureUnit:2}: {i.shortForecast}"
                     print(message)
             print()
         if rType == 'h':
             count = 0
             print()
             for i in self.hourlyObjects:
-                if count < 24:
-                    message = f"{i.startTime[11:16]}:{i.temperature:4}{i.temperatureUnit:2}~ {i.shortForecast}"
+                if count <= 24:
+                    message = f"{i.startTime[11:16]}: {i.temperature}{i.temperatureUnit}: {i.shortForecast}"
                     print(message)
                     count += 1
             print()
