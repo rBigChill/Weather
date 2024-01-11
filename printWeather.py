@@ -60,7 +60,6 @@ class Weather:
         self.weather = requests.get(request_type, headers=headers)
         while self.weather.status_code != 200:
             self.weather = requests.get(request_type, headers=headers)
-            print(self.weather.status_code)
         return self.weather
 
     # _printWeather prints weather message
