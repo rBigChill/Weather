@@ -141,5 +141,5 @@ if __name__ == "__main__":
     Add ability for daily or hourly request?
     """
     w = Weather()
-    w.DailyRequest()
+    #w.DailyRequest()
     w.HourlyRequest()

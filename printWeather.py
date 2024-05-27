@@ -10,6 +10,29 @@ except:
 finally:
     import requests
 
+class Location:
+    def __init__(self):
+        WEBSITE = "https://api.techniknews.net/ipgeo/"
+
+        data = requests.get(WEBSITE)
+
+        json = data.json()
+
+        self.lat = json['lat']
+        self.lon = json['lon']
+    
+class Grid:
+    def __init__(self):
+        API_BASE = "https://api.weather.gov"
+        ll = Location()
+        POINT = f"{API_BASE}/points/{ll.lat}%2C{ll.lon}"
+        data = requests.get(POINT)
+        json = data.json()
+
+        self.gridId = json['properties']['gridId']
+        self.gridX = json['properties']['gridX']
+        self.gridY = json['properties']['gridY']
+
 # daily weather response object
 class DailyWeatherResponse:
     def __init__(self):
@@ -48,10 +71,11 @@ class HourlyWeatherResponse:
 # class Weather returns requested weather object
 class Weather:
     def __init__(self):
-        self.API_BASE = "https://api.weather.gov"
+        API_BASE = "https://api.weather.gov"
         self.HEADERS = {"personalPythonApp": "cisneros.jorge82@yahoo.com"}
-        self.DAILY = f"{self.API_BASE}/gridpoints/SHV/39,67/forecast"
-        self.HOURLY = f"{self.API_BASE}/gridpoints/SHV/39,67/forecast/hourly"
+        GRID = Grid()
+        self.DAILY = f"{API_BASE}/gridpoints/{GRID.gridId}/{GRID.gridX},{GRID.gridY}/forecast"
+        self.HOURLY = f"{API_BASE}/gridpoints/{GRID.gridId}/{GRID.gridX},{GRID.gridY}/forecast/hourly"
         self.dailyObjects = []
         self.hourlyObjects = []
 
