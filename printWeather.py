@@ -13,9 +13,7 @@ finally:
 class Location:
     def __init__(self):
         WEBSITE = "https://api.techniknews.net/ipgeo/"
-
         data = requests.get(WEBSITE)
-
         json = data.json()
 
         self.lat = json['lat']
