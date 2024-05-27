@@ -15,6 +15,11 @@ class Location:
         WEBSITE = "https://api.techniknews.net/ipgeo/"
         data = requests.get(WEBSITE)
         json = data.json()
+        city = json['city']
+        state = json['regionName']
+        self.cityInfo = f'{city}, {state}'
+
+        print(f'\n\tWeather for {self.cityInfo}')
 
         self.lat = json['lat']
         self.lon = json['lon']
