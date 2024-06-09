@@ -45,7 +45,7 @@ class DailyWeatherResponse:
         self.temperature = 0,
         self.temperatureUnit = '',
         self.temperatureTrend = '',
-        self. probabilityOfPrecipitation = {},
+        self.probabilityOfPrecipitation = {},
         self.relativeHumidity = {},
         self.windSpeed = '',
         self.windDirection = '',
