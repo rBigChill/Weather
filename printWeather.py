@@ -129,7 +129,6 @@ class Weather:
             r.temperatureUnit = day['temperatureUnit']
             r.temperatureTrend = day['temperatureTrend']
             r.probabilityOfPrecipitation = day['probabilityOfPrecipitation']
-            r.relativeHumidity = day['relativeHumidity']
             r.windSpeed = day['windSpeed']
             r.windDirection = day['windDirection']
             r.shortForecast = day['shortForecast']
