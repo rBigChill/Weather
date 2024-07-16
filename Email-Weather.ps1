@@ -12,6 +12,7 @@ function Send-Email {
     $mail.Subject = $subject
     $mail.Body = $body
     $mail.Send()
+    $outlook.Quit()
 }
 
 $message = Get-Content -Path weather.txt -Encoding Unicode -Raw
