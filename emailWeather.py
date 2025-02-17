@@ -98,7 +98,7 @@ class Weather:
             r.temperatureUnit = day['temperatureUnit']
             r.temperatureTrend = day['temperatureTrend']
             r.probabilityOfPrecipitation = day['probabilityOfPrecipitation']
-            r.relativeHumidity = day['relativeHumidity']
+            #r.relativeHumidity = day['relativeHumidity']
             r.windSpeed = day['windSpeed']
             r.windDirection = day['windDirection']
             r.shortForecast = day['shortForecast']
@@ -141,5 +141,5 @@ if __name__ == "__main__":
     Add ability for daily or hourly request?
     """
     w = Weather()
-    #w.DailyRequest()
+    w.DailyRequest()
     w.HourlyRequest()

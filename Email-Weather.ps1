@@ -1,4 +1,4 @@
-python .\emailWeather.py > weather.txt
+python $HOME\Scripts\Weather\emailWeather.py > $HOME\Scripts\Weather\weather.txt
 
 function Send-Email {
     param(
@@ -12,8 +12,12 @@ function Send-Email {
     $mail.Subject = $subject
     $mail.Body = $body
     $mail.Send()
-    $outlook.Quit()
+    $namespace = $outlook.GetNameSpace("MAPI")
+    $outbox = $namespace.GetDefaultFolder(4)
+    while ($outbox.Items.Count -gt 0) {Write-Host "Sending..."; sleep 1}
+    #ps outlook | select id | kill
 }
 
-$message = Get-Content -Path weather.txt -Encoding Unicode -Raw
+$message = Get-Content -Path $HOME\Scripts\Weather\weather.txt -Encoding UTF8 -Raw
 Send-Email -Subject "Weather" -Body $message
+Clear-Content $HOME\Scripts\Weather\weather.txt
